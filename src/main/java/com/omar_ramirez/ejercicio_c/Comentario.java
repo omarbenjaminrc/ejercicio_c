@@ -4,11 +4,7 @@ public class Comentario {
     private String nickname;
     private String comentario;
 
-    // Constructor vacío
-    public Comentario() {
-    }
-
-    // Constructor completo
+    // Constructor
     public Comentario(String nickname, String comentario) {
         this.nickname = nickname;
         this.comentario = comentario;
