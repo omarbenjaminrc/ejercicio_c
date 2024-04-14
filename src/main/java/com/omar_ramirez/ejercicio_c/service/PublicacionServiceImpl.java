@@ -19,26 +19,27 @@ public class PublicacionServiceImpl implements PublicacionService {
 
     @Override
     public Optional<Publicacion> getPublicacionById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPublicacionById'");
+        return publicacionRepository.findById(id);
     }
 
     @Override
     public Publicacion createPublicacion(Publicacion publicacion) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createPublicacion'");
+        return publicacionRepository.save(publicacion);
     }
 
     @Override
     public Publicacion updatePublicacion(Long id, Publicacion publicacion) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updatePublicacion'");
+        if(publicacionRepository.existsById(id)){
+            publicacion.setId(id);
+            return publicacionRepository.save(publicacion);
+        }   else {
+                return null;
+        }
     }
 
     @Override
     public void deletePublicacion(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deletePublicacion'");
+        publicacionRepository.deleteById(id);
     }
 
 
