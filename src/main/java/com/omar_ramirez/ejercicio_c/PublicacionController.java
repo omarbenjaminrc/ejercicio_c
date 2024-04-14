@@ -3,6 +3,10 @@ package com.omar_ramirez.ejercicio_c;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.omar_ramirez.ejercicio_c.model.Comentario;
+import com.omar_ramirez.ejercicio_c.model.Publicacion;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
