@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "comentario")
+@Table(name = "Comentario")
 public class Comentario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,10 @@ public class Comentario {
     private String comentario;
 
     // Constructor
-    public Comentario(String nickname, String comentario) {
-        this.nickname = nickname;
-        this.comentario = comentario;
-    }
+    // public Comentario(String nickname, String comentario) {
+    //     this.nickname = nickname;
+    //     this.comentario = comentario;
+    // }
 
     // Getters
     public Long getId() {

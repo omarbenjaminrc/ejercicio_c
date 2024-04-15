@@ -1,64 +1,71 @@
 package com.omar_ramirez.ejercicio_c.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.omar_ramirez.ejercicio_c.model.Comentario;
 import com.omar_ramirez.ejercicio_c.model.Publicacion;
-import com.omar_ramirez.ejercicio_c.service.ComentarioService;
 import com.omar_ramirez.ejercicio_c.service.PublicacionService;
 
 import java.util.List;
-import java.util.Optional;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
+@RequestMapping("/publicaciones")
 public class PublicacionController {
 
-    private List<Publicacion> publicaciones = new ArrayList<>();
-        
-    @GetMapping("/publicaciones")
-    public List<Publicacion> obtenerTodasLasPublicaciones() {
-    return publicaciones;
-}
+    private static final Logger log = LoggerFactory.getLogger(PublicacionController.class);
 
-    @GetMapping("publicaciones/{id}")
-    public Publicacion obtenerPublicacion(@PathVariable Integer id) {
-        for (Publicacion publicacion : publicaciones) {
-            if (publicacion.getId().equals(id)) {
-                return publicacion;
-            }
-        }
-        return null; 
+    @Autowired
+    private PublicacionService publicacionService;
+
+    //get all 
+    @GetMapping
+    public List<Publicacion> obtenerPublicaciones() {
+        log.info("GET /publicaciones");
+        log.info("obtenerPublicaciones");
+        return publicacionService.getAllPublicaciones();
     }
 
-    @GetMapping("publicaciones/{id}/promedio")
-    public double obtenerPromedioCalificaciones(@PathVariable Integer id) {
-        for (Publicacion publicacion : publicaciones) {
-            if (publicacion.getId().equals(id)) {
-                int suma = 0;
-                List<Integer> calificaciones = publicacion.getCalificaciones();
-                for (Integer calificacion : calificaciones) {
-                    suma += calificacion;
-                }
-                return calificaciones.isEmpty() ? -1 : (double) suma / calificaciones.size();
-            }
-        }
-        return -1;
+    //get id 
+    @GetMapping("/{id}")
+    public Publicacion obtenerPublicacionPorId(@PathVariable Long id) {
+        log.info("GET /publicaciones/{id}");
+        log.info("obtenerPublicacionPorId");
+        return publicacionService.getPublicacionById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Publicacion no encontrada"));
+    }
+
+    //Crear 
+    @PostMapping("/crear")
+    public Publicacion crearPublicacion(@RequestBody Publicacion publicacion) {
+        log.info("POST /publicaciones");
+        log.info("crearPublicacion");
+        return publicacionService.createPublicacion(publicacion);
+    }
+ 
+    //modificar 
+    @PutMapping("/{id}")
+    public Publicacion modificarPublicacion(@PathVariable Long id, @RequestBody Publicacion publicacion) {
+        log.info("PUT /publicaciones/{id}");
+        log.info("modificarPublicacion");
+        return publicacionService.updatePublicacion(id, publicacion);
+    }
+
+    //eliminar 
+    @DeleteMapping("/{id}")
+    public void eliminarPublicacion(@PathVariable Long id) {
+        log.info("DELETE /publicaciones/{id}");
+        log.info("eliminarPublicacion");
+        publicacionService.deletePublicacion(id);
+        //retorno de mensaje de eliminacion de servicio json
+        log.info("Publicacion eliminada");
     }
 }

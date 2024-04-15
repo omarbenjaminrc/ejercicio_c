@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "publicacion")
+@Table(name = "Publicacion")
 public class Publicacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,17 +20,17 @@ public class Publicacion {
     private String contenido;
     @Column(name = "calificaciones")
     private List<Integer> calificaciones;
-    @Column(name = "comentarios")
-    private List<Comentario> comentarios;
+    // @Column(name = "comentarios")
+    // private List<Comentario> comentarios;
 
     // Constructor
-    public Publicacion(Long id, String nombreDueno, String contenido, List<Integer> calificaciones, List<Comentario> comentarios) {
-        this.id = id;
-        this.nombreDueno = nombreDueno;
-        this.contenido = contenido;
-        this.calificaciones = calificaciones;
-        this.comentarios = comentarios;
-    }
+    // public Publicacion(Long id, String nombreDueno, String contenido, List<Integer> calificaciones, List<Comentario> comentarios) {
+    //     this.id = id;
+    //     this.nombreDueno = nombreDueno;
+    //     this.contenido = contenido;
+    //     this.calificaciones = calificaciones;
+    //     // this.comentarios = comentarios;
+    // }
 
      // Getters
      public Long getId() {
@@ -49,9 +49,9 @@ public class Publicacion {
         return calificaciones;
     }
 
-    public List<Comentario> getComentarios() {
-        return comentarios;
-    }
+    // public List<Comentario> getComentarios() {
+    //     return comentarios;
+    // }
     
     // Setters
     public void setId(Long id) {
@@ -70,9 +70,9 @@ public class Publicacion {
         this.calificaciones = calificaciones;
     }
 
-    public void setComentarios(List<Comentario> comentarios) {
-        this.comentarios = comentarios;
-    }
+    // public void setComentarios(List<Comentario> comentarios) {
+    //     this.comentarios = comentarios;
+    // }
 }
 
 

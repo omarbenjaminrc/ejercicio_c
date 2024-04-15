@@ -23,13 +23,13 @@ public class ComentarioServiceImpl implements ComentarioService {
     }
 
     @Override
-    public com.omar_ramirez.ejercicio_c.model.Comentario Comentario(
+    public com.omar_ramirez.ejercicio_c.model.Comentario createComentario(
             com.omar_ramirez.ejercicio_c.model.Comentario comentario) {
         return comentarioRepository.save(comentario);
     }
 
     @Override
-    public com.omar_ramirez.ejercicio_c.model.Comentario Comentario(Long id,
+    public com.omar_ramirez.ejercicio_c.model.Comentario updateComentario(Long id,
             com.omar_ramirez.ejercicio_c.model.Comentario comentario) {
         if(comentarioRepository.existsById(id)){
             comentario.setId(id);
@@ -40,7 +40,7 @@ public class ComentarioServiceImpl implements ComentarioService {
     }
 
     @Override
-    public void Comentario(Long id) {
+    public void deleteComentario(Long id) {
         comentarioRepository.deleteById(id);
     }
     
