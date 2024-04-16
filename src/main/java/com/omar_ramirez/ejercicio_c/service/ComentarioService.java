@@ -8,7 +8,7 @@ import com.omar_ramirez.ejercicio_c.model.Comentario;
 public interface ComentarioService  {
     List<Comentario> getAllComentarios();
     Optional<Comentario> ComentarioById(Long id);
-    Comentario createComentario(Comentario Comentario);
-    Comentario updateComentario(Long id,Comentario Comentario);
+    Comentario createComentario(Comentario comentario);
+    Comentario updateComentario(Long id,Comentario comentario);
     void deleteComentario(Long id);
 }
