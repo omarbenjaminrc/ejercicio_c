@@ -30,7 +30,6 @@ public class PublicacionController {
     @GetMapping
     public List<Publicacion> obtenerPublicaciones() {
         log.info("GET /publicaciones");
-        log.info("obtenerPublicaciones");
         return publicacionService.getAllPublicaciones();
     }
 
@@ -38,7 +37,6 @@ public class PublicacionController {
     @GetMapping("/{id}")
     public Publicacion obtenerPublicacionPorId(@PathVariable Long id) {
         log.info("GET /publicaciones/{id}");
-        log.info("obtenerPublicacionPorId");
         return publicacionService.getPublicacionById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Publicacion no encontrada"));
     }
@@ -47,7 +45,6 @@ public class PublicacionController {
     @PostMapping("/crear")
     public Publicacion crearPublicacion(@RequestBody Publicacion publicacion) {
         log.info("POST /publicaciones");
-        log.info("crearPublicacion");
         return publicacionService.createPublicacion(publicacion);
     }
  
@@ -55,7 +52,6 @@ public class PublicacionController {
     @PutMapping("/{id}")
     public Publicacion modificarPublicacion(@PathVariable Long id, @RequestBody Publicacion publicacion) {
         log.info("PUT /publicaciones/{id}");
-        log.info("modificarPublicacion");
         return publicacionService.updatePublicacion(id, publicacion);
     }
 
@@ -63,7 +59,6 @@ public class PublicacionController {
     @DeleteMapping("/{id}")
     public void eliminarPublicacion(@PathVariable Long id) {
         log.info("DELETE /publicaciones/{id}");
-        log.info("eliminarPublicacion");
         publicacionService.deletePublicacion(id);
         //retorno de mensaje de eliminacion de servicio json
         log.info("Publicacion eliminada");
